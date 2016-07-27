@@ -65,7 +65,7 @@
     _secondsLabel = label1;
     
     GADBannerView *banner = [[GADBannerView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-50, SCREEN_WIDTH, 50)];
-    [banner setBackgroundColor:[UIColor redColor]];
+//    [banner setBackgroundColor:[UIColor redColor]];
     [self.view addSubview:banner];
     banner.adUnitID = @"ca-app-pub-3940256099942544/4411468910";
     banner.rootViewController = self;
@@ -184,7 +184,6 @@
 
 - (void) didSelectCard : (UIButton *)sender
 {
-    [self share];
     if(!sender.selected){
         sender.selected = !sender.selected;
 

@@ -211,6 +211,8 @@
 				CCD7B50A1D476DBE0084142C /* UIView+IBInspect.m */,
 				CCD7B50D1D47725B0084142C /* UIColor+TAToolkit.h */,
 				CCD7B50E1D47725C0084142C /* UIColor+TAToolkit.m */,
+				CCD7B4DA1D4766C00084142C /* ViewController.h */,
+				CCD7B4DB1D4766C00084142C /* ViewController.m */,
 				CCD7B4D41D4766C00084142C /* Supporting Files */,
 			);
 			path = ClickBomb;
@@ -221,8 +223,6 @@
 			children = (
 				CCD7B4D71D4766C00084142C /* AppDelegate.h */,
 				CCD7B4D81D4766C00084142C /* AppDelegate.m */,
-				CCD7B4DA1D4766C00084142C /* ViewController.h */,
-				CCD7B4DB1D4766C00084142C /* ViewController.m */,
 				CCD7B4DD1D4766C00084142C /* Main.storyboard */,
 				CCD7B4E01D4766C00084142C /* Assets.xcassets */,
 				CCD7B4E21D4766C00084142C /* LaunchScreen.storyboard */,
