@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  ClickBomb
+
+  Created by 武淅 段 on 16/7/27.
+  Copyright © 2016年 武淅 段. All rights reserved.
+*/
+
+share = "share";
+next = "next";
+OK = "OK";
+cancle = "cancle";
+retry = "retry";
+caculateTip = "Please remember the order of these cards\n";
+leftSecond = "left seconds: ";
+second = "second";
+playTip = "Now open the card from 1,2,3..., one by one";
+loseTip = "Don't be discouraged";
+courage = "Int fact, my friends rarely pass the first level";
+congradulation = "Congradulations!";
+successTip = "you have amazing memory! So proud of you!";
+strongMemory = "The Strongest memory";

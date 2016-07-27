@@ -1,0 +1,22 @@
+/* 
+  Localizable.strings
+  ClickBomb
+
+  Created by 武淅 段 on 16/7/27.
+  Copyright © 2016年 武淅 段. All rights reserved.
+*/
+
+share = "分享";
+next = "下一步";
+OK = "好的";
+cancle = "取消";
+retry = "重试";
+caculateTip = "请记住这些卡片的顺序\n";
+leftSecond = "剩余时间: ";
+second = "秒";
+playTip = "现在从1开始由小到大翻开卡片";
+loseTip = "不要灰心";
+courage = "事实上,我的朋友甚至连第一关也没通过!";
+congradulation = "恭喜!";
+successTip = "您拥有惊人的记忆力! 为你感到骄傲!";
+strongMemory = "最强记忆";
