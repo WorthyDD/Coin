@@ -17,17 +17,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="geo" translatesAutoresizingMaskIntoConstraints="NO" id="AjV-hT-hWz">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="developed by Wuxi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yD-1B-Om8">
-                                <rect key="frame" x="88" y="515" width="145" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <rect key="frame" x="95" y="530" width="130" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="5yD-1B-Om8" secondAttribute="bottom" constant="32" id="0Sn-FZ-ZgC"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="5yD-1B-Om8" secondAttribute="bottom" constant="20" id="0Sn-FZ-ZgC"/>
+                            <constraint firstItem="AjV-hT-hWz" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="74E-Ci-NPq"/>
                             <constraint firstItem="5yD-1B-Om8" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Pjv-bE-wFA"/>
+                            <constraint firstItem="AjV-hT-hWz" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="UTB-eH-CWj"/>
+                            <constraint firstItem="AjV-hT-hWz" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Xgh-bt-BZd"/>
+                            <constraint firstItem="AjV-hT-hWz" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" id="dUW-fd-iYF"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -37,4 +44,7 @@
             <point key="canvasLocation" x="362" y="339"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="geo" width="414" height="802"/>
+    </resources>
 </document>

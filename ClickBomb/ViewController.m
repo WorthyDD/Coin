@@ -10,8 +10,8 @@
 #import "UIView+Geometry.h"
 #import "UIColor+TAToolkit.h"
 #import <Social/Social.h>
-#import <iAd/iAd.h>
 #import "Firebase.h"
+#import "ShareView.h"
 @import GoogleMobileAds;
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
@@ -19,7 +19,7 @@
 #define CARD_COLOR [UIColor colorWithRGB:0xfd6e37]
 
 
-@interface ViewController ()<GADBannerViewDelegate>
+@interface ViewController ()<GADBannerViewDelegate, ShareDelegate>
 
 @property (nonatomic) NSMutableArray *cards;
 @property (nonatomic, assign) NSInteger rank;  //2,3,4,5
@@ -31,6 +31,7 @@
 @property (nonatomic) UILabel *secondsLabel;
 @property (nonatomic) NSString *currentLanguage; //zh-Hans   简体中文  en 英语
 @property (nonatomic) GADBannerView *adBannerView;
+@property (nonatomic, assign) NSInteger chances;        //翻牌的机会
 @end
 
 @implementation ViewController
@@ -42,6 +43,7 @@
     _rank = 3;
     _maxSecond = 10;
     _fontSize = 40.0;
+    _chances = 1;
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(15, 20, SCREEN_WIDTH-30, 60)];
     [label setTextAlignment:NSTextAlignmentCenter];
     [label setTextColor:[UIColor blackColor]];
@@ -51,8 +53,8 @@
     [self.view addSubview:label];
     _tip = label;
     
-    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0,0,60,28)];
-    label1.center = CGPointMake(SCREEN_WIDTH/2, 80);
+    UILabel *label1 = [[UILabel alloc]initWithFrame:CGRectMake(0,0,100,28)];
+    label1.center = CGPointMake(SCREEN_WIDTH/2, 100);
     [label1 setTextAlignment:NSTextAlignmentCenter];
     [label1 setTextColor:[UIColor whiteColor]];
     [label1 setBackgroundColor:[UIColor colorWithRGB:0xe7683c]];
@@ -196,25 +198,66 @@
                 [sender setImage:nil forState:UIControlStateNormal];
                 sender.layer.transform = CATransform3DIdentity;
             }completion:^(BOOL finished) {
-                if(sender.tag - _lastOpenIndex != 1){
+                if(sender.tag - _lastOpenIndex == 1){
+                    
+                    _chances--;
+                    if(_chances >= 0 ){
+                        
+                        [UIView animateWithDuration:0.3 animations:^{
+                            sender.layer.transform = CATransform3DMakeRotation(M_PI_2, 1, 0, 0);
+                        }completion:^(BOOL finished) {
+                            [UIView animateWithDuration:0.3 animations:^{
+//                                sender.layer.transform = CATransform3DMakeRotation(M_PI_2, 1, 0, 0);
+                                sender.selected = !sender.selected;
+                                [sender setTitle:@"" forState:UIControlStateNormal];
+                                [sender setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+                                sender.layer.transform = CATransform3DIdentity;
+                            }];
+                        }];
+                        return;
+                    }
+                    
+                    
                     //错误
-                    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"loseTip", nil) message:NSLocalizedString(@"courage", nil) preferredStyle:UIAlertControllerStyleAlert];
+                    /*UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"loseTip", nil) message:NSLocalizedString(@"courage", nil) preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *done = [UIAlertAction actionWithTitle:NSLocalizedString(@"retry", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         weak_self.lastOpenIndex = 0;
+                        switch (_rank) {
+                            case 3:
+                                _chances = 1;
+                                break;
+                            case 4:
+                                _chances = 5;
+                                break;
+                            case 5:
+                                _chances = 10;
+                                break;
+                            case 6:
+                                _chances = 16;
+                            default:
+                                _chances = 20;
+                                break;
+                        }
                         [weak_self initCards];
                         [weak_self startGame];
                     }];
                    // UIAlertAction *cancle = [UIAlertAction actionWithTitle:@"cancle" style:UIAlertActionStyleCancel handler:nil];
                     [alert addAction:done];
                     //[alert addAction:cancle];
-                    [weak_self presentViewController:alert animated:YES completion:nil];
+                    [weak_self presentViewController:alert animated:YES completion:nil];*/
+                    
+                    
+                    ShareView *shareView = [ShareView viewFromNib];
+                    shareView.delegate = self;
+                    [shareView showWithFail];
                 }
                 else{
                     weak_self.lastOpenIndex = sender.tag;
                     
                     //成功
                     if(sender.tag == weak_self.rank*weak_self.rank){
-                        UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"congradulation", nil)message:NSLocalizedString(@"successTip", nil) preferredStyle:UIAlertControllerStyleAlert];
+                        
+                        /*UIAlertController *alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"congradulation", nil)message:NSLocalizedString(@"successTip", nil) preferredStyle:UIAlertControllerStyleAlert];
                         UIAlertAction *cancle = [UIAlertAction actionWithTitle:NSLocalizedString(@"next", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
                             
                             //next level
@@ -229,7 +272,11 @@
                         }];
                         [alert addAction:cancle];
                         [alert addAction:share];
-                        [weak_self presentViewController:alert animated:YES completion:nil];
+                        [weak_self presentViewController:alert animated:YES completion:nil];*/
+                        
+                        ShareView *share = [ShareView viewFromNib];
+                        share.delegate = self;
+                        [share showSuccessWIthRank:weak_self.rank];
                     }
                 }
             }];
@@ -245,21 +292,26 @@
         case 3:
             _maxSecond = 10;
             _fontSize = 40.0;
+            _chances = 1;
             break;
         case 4:
             _maxSecond = 60;
             _fontSize = 32.0;
+            _chances = 5;
             break;
         case 5:
-            _maxSecond = 180;
+            _maxSecond = 300;
             _fontSize = 26.0;
+            _chances = 10;
             break;
         case 6:
-            _maxSecond = 300;
+            _maxSecond = 600;
             _fontSize = 22.0;
+            _chances = 16;
         default:
-            _maxSecond = 1800;
+            _maxSecond = 1200;
             _fontSize = 20.0;
+            _chances = 20;
             break;
     }
     
@@ -287,8 +339,12 @@
 //    UIActivityViewControllerCompletionHandler myblock = ^(NSString *type,BOOL completed){
 //        NSLog(@"%d %@",completed,type);
 //    };
+    
+    __weak typeof(self) weak_self = self;
     activeViewController.completionWithItemsHandler = ^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError){
         NSLog(@"%d %@,%@",completed,activityType, activityError);
+        [weak_self nextLevel];
+        
     };
 //    activeViewController.completionHandler = myblock;
 }
@@ -303,6 +359,63 @@
 - (void)adView:(GADBannerView *)bannerView didFailToReceiveAdWithError:(GADRequestError *)error
 {
     NSLog(@"\n\nreceive ad error--> %@", error);
+}
+
+
+#pragma mark - share
+
+- (void)didTapShareInView:(ShareView *)view
+{
+    UIGraphicsBeginImageContext(CGSizeMake(view.width, view.height-60)); //currentView 当前的view
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImageWriteToSavedPhotosAlbum(viewImage, nil, nil, nil);  //保存到相册中
+    UIActivityViewController *activeViewController = [[UIActivityViewController alloc]initWithActivityItems:@[viewImage] applicationActivities:nil];
+    //不显示哪些分享平台(具体支持那些平台，可以查看Xcode的api)
+    activeViewController.excludedActivityTypes = @[UIActivityTypeAirDrop,UIActivityTypeCopyToPasteboard,UIActivityTypeAddToReadingList];
+    [self presentViewController:activeViewController animated:YES completion:nil];
+    //分享结果回调方法
+    //    UIActivityViewControllerCompletionHandler myblock = ^(NSString *type,BOOL completed){
+    //        NSLog(@"%d %@",completed,type);
+    //    };
+    
+    __weak typeof(self) weak_self = self;
+    activeViewController.completionWithItemsHandler = ^(NSString * __nullable activityType, BOOL completed, NSArray * __nullable returnedItems, NSError * __nullable activityError){
+        NSLog(@"%d %@,%@",completed,activityType, activityError);
+        [weak_self nextLevel];
+        
+    };
+    [view dismiss];
+}
+
+- (void)didTapNextInView:(ShareView *)view
+{
+    [self nextLevel];
+}
+
+- (void)didTapOKInView:(ShareView *)view
+{
+    _lastOpenIndex = 0;
+    switch (_rank) {
+        case 3:
+            _chances = 1;
+            break;
+        case 4:
+            _chances = 5;
+            break;
+        case 5:
+            _chances = 10;
+            break;
+        case 6:
+            _chances = 16;
+        default:
+            _chances = 20;
+            break;
+    }
+    [self initCards];
+    [self startGame];
+
 }
 
 @end

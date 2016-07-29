@@ -11,6 +11,9 @@
 		CC0C5E991D4891D100713E48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC0C5E981D4891D100713E48 /* GoogleService-Info.plist */; };
 		CC0C5F5E1D48A79200713E48 /* libicucore.A.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0C5F5C1D48A79200713E48 /* libicucore.A.tbd */; };
 		CC0C5F5F1D48A79200713E48 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CC0C5F5D1D48A79200713E48 /* libicucore.tbd */; };
+		CC4553211D49D8C500F3801B /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4553201D49D8C500F3801B /* ShareView.m */; };
+		CC4553231D49D8D800F3801B /* ShareView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC4553221D49D8D800F3801B /* ShareView.xib */; };
+		CC4553261D49E57500F3801B /* TAActionOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = CC4553251D49E57500F3801B /* TAActionOverlay.m */; };
 		CC76013B1D48ABB10078DBFC /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC76013A1D48ABB10078DBFC /* AdSupport.framework */; };
 		CC76013D1D48ABBD0078DBFC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC76013C1D48ABBD0078DBFC /* AudioToolbox.framework */; };
 		CC76013F1D48ABC60078DBFC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC76013E1D48ABC60078DBFC /* AVFoundation.framework */; };
@@ -64,6 +67,12 @@
 		CC0C5E981D4891D100713E48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CC0C5F5C1D48A79200713E48 /* libicucore.A.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.A.tbd; path = usr/lib/libicucore.A.tbd; sourceTree = SDKROOT; };
 		CC0C5F5D1D48A79200713E48 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		CC45531F1D49D8C500F3801B /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
+		CC4553201D49D8C500F3801B /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
+		CC4553221D49D8D800F3801B /* ShareView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareView.xib; sourceTree = "<group>"; };
+		CC4553241D49E57500F3801B /* TAActionOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAActionOverlay.h; sourceTree = "<group>"; };
+		CC4553251D49E57500F3801B /* TAActionOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TAActionOverlay.m; sourceTree = "<group>"; };
+		CC4553271D49E59E00F3801B /* CGGeometry+TAUIToolkit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CGGeometry+TAUIToolkit.h"; sourceTree = "<group>"; };
 		CC76013A1D48ABB10078DBFC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		CC76013C1D48ABBD0078DBFC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CC76013E1D48ABC60078DBFC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -205,6 +214,9 @@
 		CCD7B4D31D4766C00084142C /* ClickBomb */ = {
 			isa = PBXGroup;
 			children = (
+				CC4553271D49E59E00F3801B /* CGGeometry+TAUIToolkit.h */,
+				CC4553241D49E57500F3801B /* TAActionOverlay.h */,
+				CC4553251D49E57500F3801B /* TAActionOverlay.m */,
 				CCD7B5071D476DBE0084142C /* UIView+Geometry.h */,
 				CCD7B5081D476DBE0084142C /* UIView+Geometry.m */,
 				CCD7B5091D476DBE0084142C /* UIView+IBInspect.h */,
@@ -213,6 +225,9 @@
 				CCD7B50E1D47725C0084142C /* UIColor+TAToolkit.m */,
 				CCD7B4DA1D4766C00084142C /* ViewController.h */,
 				CCD7B4DB1D4766C00084142C /* ViewController.m */,
+				CC45531F1D49D8C500F3801B /* ShareView.h */,
+				CC4553201D49D8C500F3801B /* ShareView.m */,
+				CC4553221D49D8D800F3801B /* ShareView.xib */,
 				CCD7B4D41D4766C00084142C /* Supporting Files */,
 			);
 			path = ClickBomb;
@@ -367,6 +382,7 @@
 			files = (
 				CCD7B4E41D4766C00084142C /* LaunchScreen.storyboard in Resources */,
 				CC0C5E911D48720A00713E48 /* Localizable.strings in Resources */,
+				CC4553231D49D8D800F3801B /* ShareView.xib in Resources */,
 				CC0C5E991D4891D100713E48 /* GoogleService-Info.plist in Resources */,
 				CCD7B4E11D4766C00084142C /* Assets.xcassets in Resources */,
 				CCD7B4DF1D4766C00084142C /* Main.storyboard in Resources */,
@@ -518,9 +534,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCD7B50B1D476DBE0084142C /* UIView+Geometry.m in Sources */,
+				CC4553261D49E57500F3801B /* TAActionOverlay.m in Sources */,
 				CCD7B4DC1D4766C00084142C /* ViewController.m in Sources */,
 				CCD7B50C1D476DBE0084142C /* UIView+IBInspect.m in Sources */,
 				CCD7B50F1D47725C0084142C /* UIColor+TAToolkit.m in Sources */,
+				CC4553211D49D8C500F3801B /* ShareView.m in Sources */,
 				CCD7B4D91D4766C00084142C /* AppDelegate.m in Sources */,
 				CCD7B4D61D4766C00084142C /* main.m in Sources */,
 			);
