@@ -12,12 +12,17 @@
 #import <Social/Social.h>
 #import "Firebase.h"
 #import "ShareView.h"
+
 @import GoogleMobileAds;
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 #define CARD_COLOR [UIColor colorWithRGB:0xfd6e37]
-
+/**
+ *      应用 ID：ca-app-pub-1802974368681645~2531606618
+        广告单元 ID：ca-app-pub-1802974368681645/2396849012
+ *
+ */
 
 @interface ViewController ()<GADBannerViewDelegate, ShareDelegate>
 
@@ -69,12 +74,12 @@
     GADBannerView *banner = [[GADBannerView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-50, SCREEN_WIDTH, 50)];
 //    [banner setBackgroundColor:[UIColor redColor]];
     [self.view addSubview:banner];
-    banner.adUnitID = @"ca-app-pub-3940256099942544/4411468910";
+    banner.adUnitID = @"ca-app-pub-1802974368681645/2396849012";
     banner.rootViewController = self;
     banner.delegate = self;
     
     GADRequest *request = [GADRequest request];
-    request.testDevices = @[ @"4732a37ad6fec36b78631906c0eb7b25" ];
+//    request.testDevices = @[ @"4732a37ad6fec36b78631906c0eb7b25" ];
     [banner loadRequest:request];
     _adBannerView = banner;
     
@@ -198,7 +203,7 @@
                 [sender setImage:nil forState:UIControlStateNormal];
                 sender.layer.transform = CATransform3DIdentity;
             }completion:^(BOOL finished) {
-                if(sender.tag - _lastOpenIndex == 1){
+                if(sender.tag - _lastOpenIndex != 1){
                     
                     _chances--;
                     if(_chances >= 0 ){

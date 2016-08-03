@@ -25,10 +25,7 @@
 {
     UINib *nib = [UINib nibWithNibName:@"ShareView" bundle:nil];
     ShareView *view = [[nib instantiateWithOwner:nil options:nil] lastObject];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSArray *languages = [defaults objectForKey:@"AppleLanguages"];
-    NSString *currentLanguage = [languages objectAtIndex:0];
-    view.currentLanguage = currentLanguage;
+    [view.shareButton setTitle:NSLocalizedString(@"share", nil) forState:UIControlStateNormal];
     return view;
 }
 
